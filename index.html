@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sumedh Chaware – Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200;400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#080c0e;--bg2:#0d1214;--bg3:#111619;
+  --accent:#00e5ff;--accent2:#00b4cc;
+  --white:#f0f4f5;--muted:#8a9aa0;--border:#1c2428;
+  --font-head:'Unbounded',sans-serif;--font-body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:var(--font-body);font-size:15px;line-height:1.65;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+img{display:block;max-width:100%;}
+body>*{position:relative;z-index:1;}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:70px;background:rgba(8,12,14,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:height 0.3s ease,background 0.3s ease,box-shadow 0.3s ease;animation:slideDown 0.6s ease both;}
+.navbar-logo{font-family:var(--font-head);font-weight:700;font-size:1.2rem;letter-spacing:2px;color:var(--accent);position:relative;overflow:hidden;animation:logoReveal 0.9s 0.1s cubic-bezier(0.16,1,0.3,1) both;}
+.navbar-logo::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.3),transparent);background-size:200%;animation:shimmer 3s infinite;}
+.navbar-links{display:flex;gap:36px;}
+.navbar-links a{font-size:0.78rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);position:relative;transition:color 0.25s;}
+.navbar-links a i{margin-right:6px;font-size:0.7rem;color:var(--accent);opacity:0.85;}
+.navbar-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s ease;}
+.navbar-links a:hover,.navbar-links a.active{color:var(--accent);}
+.navbar-links a:hover::after,.navbar-links a.active::after{width:100%;}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 70px);overflow:hidden;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 60px;position:relative;}
+.hero-left::after{content:'';position:absolute;right:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--border),transparent);}
+.hero-eyebrow{font-family:var(--font-head);font-size:0.65rem;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:20px;animation:fadeInUp 0.7s 0.2s both;}
+.hero-name{font-family:var(--font-head);font-size:clamp(2.2rem,4vw,3.6rem);font-weight:900;line-height:1.1;letter-spacing:-1px;color:var(--white);margin-bottom:10px;animation:fadeInUp 0.8s 0.35s both;}
+.hero-title{font-family:var(--font-head);font-size:0.75rem;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:24px;animation:fadeInUp 0.7s 0.5s both;}
+.hero-title::after{content:'|';color:var(--accent);animation:blink 1s step-end infinite;margin-left:3px;}
+.hero-desc{max-width:460px;color:var(--muted);font-size:0.93rem;margin-bottom:36px;line-height:1.8;animation:fadeInUp 0.7s 0.62s both;}
+.hero-contact-strip{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:36px;animation:fadeInUp 0.7s 0.75s both;}
+.hero-contact-strip span{font-size:0.78rem;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.hero-contact-strip i{color:var(--accent);font-size:0.72rem;}
+.hero-btns{display:flex;gap:14px;animation:fadeInUp 0.7s 0.88s both;}
+.hero-right{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg2);position:relative;overflow:hidden;animation:fadeInRight 0.9s 0.3s both;}
+.hero-right::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(0,229,255,0.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:glowPulse 3s ease-in-out infinite;}
+.hero-photo{width:340px;height:420px;object-fit:cover;position:relative;z-index:1;border:1px solid var(--border);animation:float 5s ease-in-out infinite;animation-delay:1.2s;}
+.hero-socials{position:absolute;left:28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:20px;z-index:2;}
+.hero-socials a{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);color:var(--muted);font-size:0.85rem;background:var(--bg);transition:all 0.2s;animation:fadeInLeft 0.5s both;}
+.hero-socials a:nth-child(1){animation-delay:1.0s;}
+.hero-socials a:nth-child(2){animation-delay:1.15s;}
+.hero-socials a:nth-child(3){animation-delay:1.3s;}
+.hero-socials a:hover{border-color:var(--accent);color:var(--accent);}
+
+/* BUTTONS */
+.btn-primary{padding:12px 28px;background:var(--accent);color:#080c0e;font-family:var(--font-head);font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;position:relative;overflow:hidden;transition:background 0.2s,transform 0.2s;display:inline-flex;align-items:center;gap:7px;}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);}
+.btn-outline{padding:12px 28px;background:transparent;color:var(--accent);font-family:var(--font-head);font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--accent);cursor:pointer;position:relative;overflow:hidden;transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;}
+.btn-outline:hover{background:var(--accent);color:#080c0e;transform:translateY(-2px);}
+
+/* SECTIONS */
+.section{padding:90px 60px;}
+.section-alt{background:var(--bg2);}
+.section-label{font-family:var(--font-head);font-size:0.6rem;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:10px;}
+.section-title{font-family:var(--font-head);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--white);margin-bottom:50px;position:relative;display:inline-block;}
+.section-title span{color:var(--accent);}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:80px;align-items:start;max-width:1100px;margin:0 auto;}
+.about-text p{color:var(--muted);font-size:0.93rem;margin-bottom:16px;line-height:1.85;}
+.about-text p strong{color:var(--white);}
+.about-stat-row{display:flex;gap:16px;margin-top:24px;flex-wrap:wrap;}
+.about-stat{display:flex;align-items:center;gap:12px;background:var(--bg3);border:1px solid var(--border);padding:14px 18px;flex:1;min-width:120px;transition:border-color 0.2s,transform 0.3s ease;}
+.about-stat:hover{border-color:rgba(0,229,255,0.3);transform:translateY(-4px);}
+.about-stat i{color:var(--accent);font-size:1.2rem;transition:transform 0.35s ease;}
+.about-stat:hover i{transform:scale(1.25) rotate(-8deg);}
+.about-stat-text small{display:block;font-size:0.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-family:var(--font-head);}
+.about-stat-text strong{font-size:0.95rem;color:var(--white);font-family:var(--font-head);}
+.about-skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.skill-card{background:var(--bg3);border:1px solid var(--border);padding:18px 20px;position:relative;overflow:hidden;transition:transform 0.3s ease,border-color 0.25s;}
+.skill-card::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.04),transparent);transition:left 0.6s ease;}
+.skill-card:hover::before{left:150%;}
+.skill-card:hover{transform:translateY(-5px);border-color:rgba(0,229,255,0.35);}
+.skill-card h4{font-family:var(--font-head);font-size:0.65rem;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:10px;}
+.skill-card h4 i{margin-right:7px;font-size:0.82rem;}
+.skill-card li{display:flex;align-items:center;gap:7px;font-size:0.82rem;color:var(--muted);padding:3px 0;border-bottom:1px solid var(--border);}
+.skill-card li:last-child{border-bottom:none;}
+.skill-card li i{color:var(--accent);font-size:0.7rem;width:12px;opacity:0.8;flex-shrink:0;}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto;}
+.project-card{background:var(--bg3);border:1px solid var(--border);overflow:hidden;position:relative;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1),border-color 0.3s,box-shadow 0.35s;cursor:pointer;}
+.project-card:hover{border-color:rgba(0,229,255,0.4);transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,229,255,0.1);}
+.project-card img{width:100%;height:200px;object-fit:cover;display:block;transition:transform 0.5s ease;}
+.project-card:hover img{transform:scale(1.06);}
+.project-card-body{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;}
+.project-card-body p{font-family:var(--font-head);font-size:0.65rem;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;}
+.project-card-body p i{margin-right:6px;color:var(--accent);}
+.proj-arrow{color:var(--accent);font-size:0.8rem;opacity:0;transition:opacity 0.25s;}
+.project-card:hover .proj-arrow{opacity:1;}
+
+/* RESUME */
+.resume-section{padding:90px 60px;background:var(--bg);}
+.resume-section-header{text-align:center;margin-bottom:70px;}
+.resume-section-header .section-label{display:block;text-align:center;}
+.resume-section-header h1{font-family:var(--font-head);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:var(--white);}
+.resume-section-header h1 span{color:var(--accent);}
+.resume-two-col{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1100px;margin:0 auto 70px auto;border:1px solid var(--border);}
+.resume-col-block{padding:44px 44px;}
+.resume-col-block:first-child{border-right:1px solid var(--border);}
+.resume-col-heading{font-family:var(--font-head);font-size:0.7rem;letter-spacing:3px;color:var(--accent);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.resume-entry{margin-bottom:36px;position:relative;transition:transform 0.25s ease;}
+.resume-entry:last-child{margin-bottom:0;}
+.resume-entry:hover{transform:translateX(6px);}
+.resume-entry::before{content:'';position:absolute;left:-44px;top:0;bottom:0;width:2px;background:transparent;transition:background 0.3s;}
+.resume-col-block:hover .resume-entry:hover::before{background:var(--accent);}
+.resume-entry-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:4px;}
+.resume-entry h3{font-family:var(--font-head);font-size:0.82rem;font-weight:700;color:var(--white);line-height:1.4;}
+.resume-entry h3 i{color:var(--accent);font-size:0.72rem;margin-right:6px;opacity:0.8;}
+.resume-entry-date{font-size:0.72rem;color:var(--accent);white-space:nowrap;margin-top:2px;font-weight:500;}
+.resume-entry-org{font-size:0.78rem;color:var(--accent2);margin-bottom:10px;opacity:0.8;}
+.resume-entry p{font-size:0.84rem;color:var(--muted);line-height:1.75;}
+.resume-entry ul{padding-left:16px;list-style:disc;font-size:0.84rem;color:var(--muted);line-height:1.85;}
+.resume-entry ul li{margin-bottom:4px;}
+.resume-entry-divider{border:none;border-top:1px solid var(--border);margin:28px 0;}
+.resume-stat{display:inline-block;font-family:var(--font-head);font-size:0.95rem;color:var(--accent);font-weight:700;margin-right:4px;}
+.resume-three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;max-width:1100px;margin:0 auto;border:1px solid var(--border);}
+.resume-bottom-block{padding:36px 36px;border-right:1px solid var(--border);}
+.resume-bottom-block:last-child{border-right:none;}
+.resume-block-heading{font-family:var(--font-head);font-size:0.65rem;letter-spacing:3px;color:var(--accent);text-transform:uppercase;display:flex;align-items:center;gap:9px;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.skill-group{margin-bottom:18px;}
+.skill-group-label{font-size:0.7rem;font-family:var(--font-head);color:var(--white);letter-spacing:1px;margin-bottom:8px;opacity:0.8;}
+.tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-size:0.72rem;padding:4px 10px;background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.2);color:#9ecdd4;letter-spacing:0.3px;cursor:default;transition:background 0.2s,border-color 0.2s,transform 0.2s,color 0.2s;}
+.tag i{margin-right:4px;font-size:0.66rem;color:var(--accent);opacity:0.9;}
+.tag:hover{background:rgba(0,229,255,0.12);border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.cert-item{margin-bottom:18px;}
+.cert-item h4{font-family:var(--font-head);font-size:0.78rem;color:var(--white);margin-bottom:3px;}
+.cert-item p{font-size:0.78rem;color:var(--muted);line-height:1.6;}
+.achievement-list{list-style:none;padding:0;}
+.achievement-list li{font-size:0.82rem;color:var(--muted);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;line-height:1.5;transition:transform 0.2s,color 0.2s;}
+.achievement-list li:last-child{border-bottom:none;}
+.achievement-list li::before{content:'→';color:var(--accent);font-size:0.75rem;margin-top:2px;flex-shrink:0;}
+.achievement-list li:hover{transform:translateX(8px);color:var(--white);}
+.soft-skill-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);font-size:0.82rem;color:var(--muted);transition:transform 0.2s,color 0.2s;}
+.soft-skill-row:last-of-type{border-bottom:none;}
+.soft-skill-row i{color:var(--accent);width:14px;font-size:0.72rem;transition:transform 0.3s ease;}
+.soft-skill-row:hover{transform:translateX(8px);color:var(--accent);}
+.soft-skill-row:hover i{transform:rotate(15deg) scale(1.2);}
+.contact-rows{margin-top:28px;}
+.contact-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);font-size:0.8rem;color:var(--muted);}
+.contact-row:last-child{border-bottom:none;}
+.contact-row i{color:var(--accent);width:14px;font-size:0.78rem;flex-shrink:0;}
+.contact-row a{color:var(--muted);transition:color 0.2s;}
+.contact-row a:hover{color:var(--accent);}
+.block-sub-heading{font-family:var(--font-head);font-size:0.62rem;letter-spacing:3px;color:var(--accent);text-transform:uppercase;display:flex;align-items:center;gap:9px;margin:22px 0 14px;padding-top:20px;border-top:1px solid var(--border);}
+
+/* CONTACT */
+.contact-section{padding:90px 60px;background:var(--bg2);}
+.contact-inner{max-width:900px;margin:0 auto;}
+.contact-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px;}
+.contact-info-card{background:var(--bg3);border:1px solid var(--border);padding:20px 24px;display:flex;align-items:center;gap:14px;transition:transform 0.3s ease,border-color 0.25s,box-shadow 0.3s;}
+.contact-info-card:hover{border-color:rgba(0,229,255,0.35);transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,229,255,0.08);}
+.contact-info-card i{color:var(--accent);font-size:1.1rem;width:20px;transition:transform 0.35s ease;}
+.contact-info-card:hover i{transform:scale(1.2) rotate(-5deg);}
+.contact-info-card .info-text small{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-family:var(--font-head);display:block;margin-bottom:3px;}
+.contact-info-card .info-text span{font-size:0.82rem;color:var(--muted);}
+.contact-info-card .info-text a{color:var(--muted);transition:color 0.2s;}
+.contact-info-card .info-text a:hover{color:var(--accent);}
+
+/* FOOTER */
+footer{padding:30px 60px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+footer p{font-size:0.75rem;color:var(--muted);}
+footer p span{color:var(--accent);}
+.footer-socials{display:flex;gap:14px;}
+.footer-socials a{font-size:0.85rem;color:var(--muted);transition:color 0.2s;}
+.footer-socials a:hover{color:var(--accent);}
+
+/* ANIMATIONS */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInLeft{from{opacity:0;transform:translateX(-50px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeInRight{from{opacity:0;transform:translateX(50px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 0 0 rgba(0,229,255,0)}50%{box-shadow:0 0 30px 8px rgba(0,229,255,0.15)}}
+@keyframes float{0%,100%{transform:translateY(0px)}50%{transform:translateY(-12px)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes ripple{0%{transform:scale(0);opacity:0.6}100%{transform:scale(4);opacity:0}}
+@keyframes logoReveal{from{letter-spacing:12px;opacity:0}to{letter-spacing:2px;opacity:1}}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1),transform 0.7s cubic-bezier(0.16,1,0.3,1);}
+.reveal.from-left{transform:translateX(-40px);}
+.reveal.from-right{transform:translateX(40px);}
+.reveal.visible{opacity:1;transform:translateY(0) translateX(0) scale(1);}
+.stagger-children>*{opacity:0;transform:translateY(28px);transition:opacity 0.55s cubic-bezier(0.16,1,0.3,1),transform 0.55s cubic-bezier(0.16,1,0.3,1);}
+.stagger-children.visible>*:nth-child(1){transition-delay:0.05s;opacity:1;transform:none;}
+.stagger-children.visible>*:nth-child(2){transition-delay:0.12s;opacity:1;transform:none;}
+.stagger-children.visible>*:nth-child(3){transition-delay:0.19s;opacity:1;transform:none;}
+.stagger-children.visible>*:nth-child(4){transition-delay:0.26s;opacity:1;transform:none;}
+.stagger-children.visible>*:nth-child(5){transition-delay:0.33s;opacity:1;transform:none;}
+.stagger-children.visible>*:nth-child(6){transition-delay:0.40s;opacity:1;transform:none;}
+
+/* PARTICLES & CURSOR */
+#particles-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.35;}
+.cursor-glow{position:fixed;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.05) 0%,transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:left 0.12s ease,top 0.12s ease;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .navbar{padding:0 20px;}
+  .navbar-links{gap:18px;}
+  .hero{grid-template-columns:1fr;}
+  .hero-left{padding:60px 20px;}
+  .hero-right{min-height:340px;padding:40px 20px;}
+  .hero-photo{width:240px;height:300px;}
+  .section{padding:60px 20px;}
+  .about-grid{grid-template-columns:1fr;gap:40px;}
+  .about-skills-grid{grid-template-columns:1fr;}
+  .projects-grid{grid-template-columns:1fr 1fr;}
+  .resume-section{padding:60px 20px;}
+  .resume-two-col,.resume-three-col{grid-template-columns:1fr;}
+  .resume-col-block:first-child{border-right:none;border-bottom:1px solid var(--border);}
+  .resume-col-block{padding:28px 20px;}
+  .resume-bottom-block{border-right:none;border-bottom:1px solid var(--border);padding:24px 20px;}
+  .contact-section{padding:60px 20px;}
+  .contact-info-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:16px;padding:24px 20px;}
+}
+  </style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-logo">SUMEDH</div>
+  <div class="navbar-links">
+    <a href="#home"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="#about"><i class="fa-solid fa-user"></i>About</a>
+    <a href="#projects"><i class="fa-solid fa-diagram-project"></i>Projects</a>
+    <a href="#resume"><i class="fa-solid fa-file-lines"></i>Resume</a>
+    <a href="#contact"><i class="fa-solid fa-paper-plane"></i>Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow">— BCA Graduate &amp; Developer</p>
+    <h1 class="hero-name">SUMEDH<br>CHAWARE</h1>
+    <p class="hero-title">Java · Web · SQL · Problem Solving</p>
+    <p class="hero-desc">
+      Motivated BCA graduate seeking to leverage my knowledge in Java, SQL, and web technologies.
+      Eager to contribute to organizational success through analytical thinking, problem-solving skills,
+      and continuous learning in a dynamic IT environment.
+    </p>
+    <div class="hero-contact-strip">
+      <span><i class="fa-solid fa-phone"></i> +91-8830927625</span>
+      <span><i class="fa-solid fa-envelope"></i> sumedhchaware5269@gmail.com</span>
+      <span><i class="fa-solid fa-location-dot"></i> Pune, Maharashtra</span>
+    </div>
+    <div class="hero-btns">
+      <!-- ✅ Download CV — update href to your CV filename once uploaded e.g. href="./latex_Resume.pdf" -->
+      <a class="btn-primary" href="./latex_Resume.pdf" download="latex_Resume.pdf">
+        <i class="fa-solid fa-download"></i>Download CV
+      </a>
+      <!-- ✅ Contact button scrolls to contact section -->
+      <a class="btn-outline" href="#contact">
+        <i class="fa-solid fa-paper-plane"></i>Contact Me
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-socials">
+      <!-- ✅ Instagram — update href with your Instagram URL -->
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" title="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <!-- ✅ GitHub — your repo link -->
+      <a href="https://github.com/Sumedh-C/new-Begining" target="_blank" rel="noopener" title="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <!-- ✅ LinkedIn — your profile -->
+      <a href="https://www.linkedin.com/in/sumedh-chaware-86a4182a7" target="_blank" rel="noopener" title="LinkedIn">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+    </div>
+    <img class="hero-photo" src="./imgs/sumedh-removebg-preview copy.png" alt="Sumedh Chaware">
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="about">
+  <p class="section-label reveal">02 — About</p>
+  <h2 class="section-title reveal">About <span>Me</span></h2>
+  <div class="about-grid">
+    <div class="about-text reveal from-left">
+      <p>I'm a <strong>BCA graduate from MGMs College of Computer Science &amp; Information Technology, Nanded</strong> with a strong passion for building software and solving real-world problems through technology. I graduated with a CGPA of <strong>7.97</strong>.</p>
+      <p>I have hands-on experience with <strong>Java, SQL, PHP, HTML5, CSS3, and JavaScript</strong>. I built a full-stack web application as my final-year project — a Digital Customer Onboarding System for banking — implementing real-time form validation, secure data handling, and database design.</p>
+      <p>My goal is to build a successful career as a developer in the IT industry, taking on challenging projects that allow me to grow both technically and professionally.</p>
+      <div class="about-stat-row">
+        <div class="about-stat"><i class="fa-solid fa-graduation-cap"></i><div class="about-stat-text"><small>Degree</small><strong>BCA</strong></div></div>
+        <div class="about-stat"><i class="fa-solid fa-star"></i><div class="about-stat-text"><small>CGPA</small><strong>7.97</strong></div></div>
+        <div class="about-stat"><i class="fa-solid fa-laptop-code"></i><div class="about-stat-text"><small>Projects</small><strong>6+</strong></div></div>
+        <div class="about-stat"><i class="fa-solid fa-location-dot"></i><div class="about-stat-text"><small>Location</small><strong>Pune</strong></div></div>
+      </div>
+    </div>
+    <div class="about-skills-grid reveal from-right">
+      <div class="skill-card"><h4><i class="fa-solid fa-code"></i>Languages</h4><ul><li><i class="fa-brands fa-java"></i>Core Java</li><li><i class="fa-brands fa-js"></i>JavaScript</li><li><i class="fa-solid fa-database"></i>SQL</li></ul></div>
+      <div class="skill-card"><h4><i class="fa-solid fa-globe"></i>Web Tech</h4><ul><li><i class="fa-brands fa-html5"></i>HTML5</li><li><i class="fa-brands fa-css3-alt"></i>CSS3</li><li><i class="fa-brands fa-php"></i>PHP</li><li><i class="fa-brands fa-bootstrap"></i>Bootstrap</li></ul></div>
+      <div class="skill-card"><h4><i class="fa-solid fa-database"></i>Database</h4><ul><li><i class="fa-solid fa-server"></i>MySQL</li><li><i class="fa-solid fa-table"></i>DBMS Concepts</li></ul></div>
+      <div class="skill-card"><h4><i class="fa-solid fa-screwdriver-wrench"></i>Tools</h4><ul><li><i class="fa-brands fa-github"></i>Git &amp; GitHub</li><li><i class="fa-solid fa-pen-to-square"></i>VS Code</li><li><i class="fa-solid fa-circle-dot"></i>Eclipse</li><li><i class="fa-solid fa-server"></i>XAMPP</li><li><i class="fa-solid fa-paper-plane"></i>Postman</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <p class="section-label reveal">03 — Work</p>
+  <h2 class="section-title reveal">My <span>Projects</span></h2>
+  <div class="projects-grid stagger-children reveal">
+    <!-- ✅ Each project-card links to its GitHub/live URL — update href for each project -->
+    <a class="project-card" href="https://github.com/Sumedh-C/new-Begining" target="_blank" rel="noopener">
+      <img src="./Imgs/project1.png" alt="Project 1">
+      <div class="project-card-body"><p><i class="fa-solid fa-folder-open"></i>Project 01</p><i class="fa-solid fa-arrow-up-right-from-square proj-arrow"></i></div>
+    </a>
+    <a class="project-card" href="https://github.com/Sumedh-C/new-Begining" target="_blank" rel="noopener">
+      <img src="./Imgs/project2.png" alt="Project 2">
+      <div class="project-card-body"><p><i class="fa-solid fa-folder-open"></i>Project 02</p><i class="fa-solid fa-arrow-up-right-from-square proj-arrow"></i></div>
+    </a>
+    <a class="project-card" href="https://github.com/Sumedh-C/new-Begining" target="_blank" rel="noopener">
+      <img src="./Imgs/project3.png" alt="Project 3">
+      <div class="project-card-body"><p><i class="fa-solid fa-folder-open"></i>Project 03</p><i class="fa-solid fa-arrow-up-right-from-square proj-arrow"></i></div>
+    </a>
+    <a class="project-card" href="https://github.com/Sumedh-C/new-Begining" target="_blank" rel="noopener">
+      <img src="./Imgs/project4.png" alt="Project 4">
+      <div class="project-card-body"><p><i class="fa-solid fa-folder-open"></i>Project 04</p><i class="fa-solid fa-arrow-up-right-from-square proj-arrow"></i></div>
+    </a>
+    <a class="project-card" href="https://github.com/Sumedh-C/new-Begining" target="_blank" rel="noopener">
+      <img src="./Imgs/project5.png" alt="Project 5">
+      <div class="project-card-body"><p><i class="fa-solid fa-folder-open"></i>Project 05</p><i class="fa-solid fa-arrow-up-right-from-square proj-arrow"></i></div>
+    </a>
+    <a class="project-card" href="https://github.com/Sumedh-C/new-Begining" target="_blank" rel="noopener">
+      <img src="./Imgs/assam.jpg" alt="Project 6">
+      <div class="project-card-body"><p><i class="fa-solid fa-folder-open"></i>Project 06</p><i class="fa-solid fa-arrow-up-right-from-square proj-arrow"></i></div>
+    </a>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section class="resume-section" id="resume">
+  <div class="resume-section-header reveal">
+    <p class="section-label">04 — Resume</p>
+    <h1>My <span>Resume</span></h1>
+  </div>
+  <div class="resume-two-col reveal">
+    <div class="resume-col-block">
+      <div class="resume-col-heading"><i class="fa-solid fa-briefcase"></i> Experience &amp; Projects</div>
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <h3><i class="fa-solid fa-laptop-code"></i>Digital Customer Onboarding System</h3>
+          <span class="resume-entry-date"><i class="fa-regular fa-calendar"></i> Aug 2024 – May 2025</span>
+        </div>
+        <p class="resume-entry-org">Technologies: PHP · MySQL · HTML · CSS · JavaScript</p>
+        <ul>
+          <li>Developed a responsive web-based banking application enabling users to open bank accounts online.</li>
+          <li>Implemented real-time form validation and secure data handling mechanisms.</li>
+          <li>Designed database structure for efficient storage and retrieval of customer information.</li>
+          <li>Ensured data privacy and basic security compliance mechanisms.</li>
+          <li>Applied OOP and DBMS concepts in backend integration.</li>
+          <li>Improved user experience with structured UI design and validation logic.</li>
+        </ul>
+      </div>
+      <hr class="resume-entry-divider">
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <h3><i class="fa-solid fa-shield-halved"></i>NCC Camp – Leadership &amp; Teamwork</h3>
+          <span class="resume-entry-date"><i class="fa-solid fa-location-dot"></i> Pune</span>
+        </div>
+        <p class="resume-entry-org">National Cadet Corps · 10-Day Residential Camp</p>
+        <p>Completed a 10-day NCC camp in Pune, developing leadership, discipline, teamwork, and decision-making skills under structured training conditions.</p>
+      </div>
+      <hr class="resume-entry-divider">
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <h3><i class="fa-solid fa-trophy"></i>Technical Project Competitions</h3>
+          <span class="resume-entry-date"><i class="fa-regular fa-calendar"></i> 2022 – 2025</span>
+        </div>
+        <p class="resume-entry-org">College-Level Events · Nanded</p>
+        <p>Actively participated in technical project competitions and college cricket tournaments, demonstrating teamwork and competitive spirit.</p>
+      </div>
+    </div>
+    <div class="resume-col-block">
+      <div class="resume-col-heading"><i class="fa-solid fa-graduation-cap"></i> Education</div>
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <h3><i class="fa-solid fa-graduation-cap"></i>Bachelor of Computer Applications (BCA)</h3>
+          <span class="resume-entry-date"><i class="fa-regular fa-calendar"></i> 2022 – 2025</span>
+        </div>
+        <p class="resume-entry-org"><i class="fa-solid fa-building-columns" style="color:var(--accent);margin-right:5px;font-size:0.75rem;"></i>MGMs College of Computer Science &amp; Information Technology, Nanded</p>
+        <p>CGPA: <span class="resume-stat">7.97</span><br>Specialization in Core Java, SQL, Web Technologies, DBMS, OOP, and DSA. Final-year project: Digital Customer Onboarding System.</p>
+      </div>
+      <hr class="resume-entry-divider">
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <h3><i class="fa-solid fa-school"></i>12th Standard (HSC)</h3>
+          <span class="resume-entry-date"><i class="fa-regular fa-calendar"></i> 2019</span>
+        </div>
+        <p class="resume-entry-org"><i class="fa-solid fa-building-columns" style="color:var(--accent);margin-right:5px;font-size:0.75rem;"></i>Netaji Subhash Chandra Bose College, Nanded</p>
+        <p>Percentage: <span class="resume-stat">64.46%</span></p>
+      </div>
+      <hr class="resume-entry-divider">
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <h3><i class="fa-solid fa-school-flag"></i>10th Standard (SSC)</h3>
+          <span class="resume-entry-date"><i class="fa-regular fa-calendar"></i> 2017</span>
+        </div>
+        <p class="resume-entry-org"><i class="fa-solid fa-building-columns" style="color:var(--accent);margin-right:5px;font-size:0.75rem;"></i>Shri Shardha Bhavan High School, Nanded</p>
+        <p>Percentage: <span class="resume-stat">54.20%</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="resume-three-col reveal">
+    <div class="resume-bottom-block">
+      <div class="resume-block-heading"><i class="fa-solid fa-code"></i> Technical Skills</div>
+      <div class="skill-group"><p class="skill-group-label">Programming Languages</p><div class="tags"><span class="tag"><i class="fa-brands fa-java"></i>Core Java</span><span class="tag"><i class="fa-brands fa-js"></i>JavaScript</span><span class="tag"><i class="fa-solid fa-database"></i>SQL</span></div></div>
+      <div class="skill-group"><p class="skill-group-label">Web Technologies</p><div class="tags"><span class="tag"><i class="fa-brands fa-html5"></i>HTML5</span><span class="tag"><i class="fa-brands fa-css3-alt"></i>CSS3</span><span class="tag"><i class="fa-brands fa-php"></i>PHP</span><span class="tag"><i class="fa-brands fa-bootstrap"></i>Bootstrap</span></div></div>
+      <div class="skill-group"><p class="skill-group-label">Database</p><div class="tags"><span class="tag"><i class="fa-solid fa-server"></i>MySQL</span></div></div>
+      <div class="skill-group"><p class="skill-group-label">Concepts</p><div class="tags"><span class="tag"><i class="fa-solid fa-table-columns"></i>DBMS</span><span class="tag"><i class="fa-solid fa-cube"></i>OOP</span><span class="tag"><i class="fa-solid fa-sitemap"></i>DSA</span></div></div>
+      <div class="skill-group"><p class="skill-group-label">Tools</p><div class="tags"><span class="tag"><i class="fa-brands fa-github"></i>Git &amp; GitHub</span><span class="tag"><i class="fa-solid fa-pen-to-square"></i>VS Code</span><span class="tag"><i class="fa-solid fa-circle-dot"></i>Eclipse</span><span class="tag"><i class="fa-solid fa-server"></i>XAMPP</span><span class="tag"><i class="fa-solid fa-vial"></i>Postman</span></div></div>
+    </div>
+    <div class="resume-bottom-block">
+      <div class="resume-block-heading"><i class="fa-solid fa-certificate"></i> Certifications</div>
+      <div class="cert-item"><h4><i class="fa-solid fa-award" style="color:var(--accent);margin-right:7px;"></i>Big Data – NPTEL</h4><p>National Programme on Technology Enhanced Learning. Certified in Big Data fundamentals including Hadoop, MapReduce, and distributed data systems.</p></div>
+      <div class="block-sub-heading"><i class="fa-solid fa-trophy"></i> Achievements</div>
+      <ul class="achievement-list">
+        <li>Completed a 10-day NCC camp in Pune — Leadership &amp; Teamwork</li>
+        <li>Participated in college cricket tournaments</li>
+        <li>Took part in technical project competitions at college level</li>
+      </ul>
+    </div>
+    <div class="resume-bottom-block">
+      <div class="resume-block-heading"><i class="fa-solid fa-star"></i> Soft Skills</div>
+      <div class="soft-skill-row"><i class="fa-solid fa-comments"></i> Strong Communication</div>
+      <div class="soft-skill-row"><i class="fa-solid fa-arrows-rotate"></i> Adaptability</div>
+      <div class="soft-skill-row"><i class="fa-solid fa-clock"></i> Time Management</div>
+      <div class="soft-skill-row"><i class="fa-solid fa-bolt"></i> Quick Learner</div>
+      <div class="soft-skill-row"><i class="fa-solid fa-brain"></i> Analytical Thinking</div>
+      <div class="contact-rows">
+        <div class="block-sub-heading" style="margin-top:0;padding-top:16px;"><i class="fa-solid fa-address-card"></i> Contact</div>
+        <!-- ✅ All contact links wired up -->
+        <div class="contact-row"><i class="fa-solid fa-phone"></i> +91-8830927625</div>
+        <div class="contact-row"><i class="fa-solid fa-envelope"></i><a href="mailto:sumedhchaware025@gmail.com">sumedhchaware025@gmail.com</a></div>
+        <div class="contact-row"><i class="fa-solid fa-location-dot"></i> Pune, Maharashtra</div>
+        <div class="contact-row"><i class="fa-brands fa-linkedin"></i><a href="https://www.linkedin.com/in/sumedh-chaware-86a4182a7" target="_blank" rel="noopener">LinkedIn Profile</a></div>
+        <div class="contact-row"><i class="fa-brands fa-github"></i><a href="https://github.com/Sumedh-C/new-Begining" target="_blank" rel="noopener">GitHub Profile</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <p class="section-label reveal">05 — Contact</p>
+  <h2 class="section-title reveal">Get In <span>Touch</span></h2>
+  <div class="contact-inner reveal">
+    <p style="color:var(--muted);font-size:0.92rem;margin-bottom:10px;">
+      I'm actively looking for opportunities in the IT industry. Whether you have a project, a job opening, or just want to connect — feel free to reach out!
+    </p>
+    <div class="contact-info-grid stagger-children reveal">
+      <!-- ✅ Phone — click to call -->
+      <a class="contact-info-card" href="tel:+918830927625">
+        <i class="fa-solid fa-phone"></i>
+        <div class="info-text"><small>Phone</small><span>+91-8830927625</span></div>
+      </a>
+      <!-- ✅ Email — opens mail app -->
+      <a class="contact-info-card" href="mailto:sumedhchaware5269@gmail.com">
+        <i class="fa-solid fa-envelope"></i>
+        <div class="info-text"><small>Email</small><span>sumedhchaware5269@gmail.com</span></div>
+      </a>
+      <!-- Location — no link needed -->
+      <div class="contact-info-card">
+        <i class="fa-solid fa-location-dot"></i>
+        <div class="info-text"><small>Location</small><span>Pune, Maharashtra</span></div>
+      </div>
+      <!-- ✅ LinkedIn -->
+      <a class="contact-info-card" href="https://www.linkedin.com/in/sumedh-chaware-86a4182a7" target="_blank" rel="noopener">
+        <i class="fa-brands fa-linkedin"></i>
+        <div class="info-text"><small>LinkedIn</small><span>View Profile</span></div>
+      </a>
+      <!-- ✅ GitHub -->
+      <a class="contact-info-card" href="https://github.com/Sumedh-C/new-Begining" target="_blank" rel="noopener">
+        <i class="fa-brands fa-github"></i>
+        <div class="info-text"><small>GitHub</small><span>View Profile</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Sumedh Chaware</span> &nbsp;<i class="fa-solid fa-heart" style="color:var(--accent);font-size:0.7rem;"></i>&nbsp; All rights reserved</p>
+  <div class="footer-socials">
+    <!-- ✅ Update Instagram URL when ready -->
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://github.com/Sumedh-C/new-Begining" target="_blank" rel="noopener" title="GitHub"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/sumedh-chaware-86a4182a7" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="mailto:sumedhchaware025@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+</footer>
+
+<script>
+// 1. PARTICLE BACKGROUND
+(function(){
+  const canvas=document.getElementById('particles-canvas');
+  const ctx=canvas.getContext('2d');
+  let W,H,particles=[];
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+  function Particle(){this.reset=function(){this.x=Math.random()*W;this.y=H+Math.random()*100;this.size=Math.random()*1.5+0.3;this.speed=Math.random()*0.6+0.2;this.vx=(Math.random()-0.5)*0.4;this.alpha=Math.random()*0.5+0.1;this.color=Math.random()>0.5?'0,229,255':'0,180,204';};this.reset();this.y=Math.random()*H;}
+  function init(){resize();particles=Array.from({length:80},()=>new Particle());}
+  function draw(){ctx.clearRect(0,0,W,H);particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=`rgba(${p.color},${p.alpha})`;ctx.fill();p.y-=p.speed;p.x+=p.vx;p.alpha+=Math.sin(Date.now()*0.001+p.x)*0.002;if(p.y<-10)p.reset();});for(let i=0;i<particles.length;i++){for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x;const dy=particles[i].y-particles[j].y;const dist=Math.sqrt(dx*dx+dy*dy);if(dist<80){ctx.beginPath();ctx.strokeStyle=`rgba(0,229,255,${0.04*(1-dist/80)})`;ctx.lineWidth=0.5;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke();}}}requestAnimationFrame(draw);}
+  window.addEventListener('resize',resize);init();draw();
+})();
+
+// 2. CURSOR GLOW
+(function(){const glow=document.getElementById('cursorGlow');document.addEventListener('mousemove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';});})();
+
+// 3. SCROLL REVEAL
+(function(){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible');});},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal,.stagger-children').forEach(el=>observer.observe(el));})();
+
+// 4. ACTIVE NAV LINK
+(function(){const sections=document.querySelectorAll('section[id]');const links=document.querySelectorAll('.navbar-links a');const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){const id=entry.target.getAttribute('id');links.forEach(link=>{link.classList.toggle('active',link.getAttribute('href')==='#'+id);});}});},{threshold:0.35});sections.forEach(s=>obs.observe(s));})();
+
+// 5. TYPING EFFECT
+(function(){const el=document.querySelector('.hero-title');if(!el)return;const phrases=['Java · Web · SQL · Problem Solving','Frontend · Backend · Databases','BCA Graduate · IT Professional','Open to Opportunities 🚀'];let pi=0,ci=0,del=false;function type(){const cur=phrases[pi];if(!del){el.textContent=cur.slice(0,++ci);if(ci===cur.length){del=true;setTimeout(type,1800);return;}}else{el.textContent=cur.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length;}}setTimeout(type,del?40:70);}setTimeout(type,1200);})();
+
+// 6. NAVBAR SHRINK
+(function(){const nav=document.querySelector('.navbar');window.addEventListener('scroll',()=>{if(window.scrollY>50){nav.style.height='56px';nav.style.boxShadow='0 4px 30px rgba(0,0,0,0.5)';nav.style.background='rgba(8,12,14,0.98)';}else{nav.style.height='';nav.style.boxShadow='';nav.style.background='';}});})();
+
+// 7. RIPPLE BUTTONS
+document.querySelectorAll('.btn-primary,.btn-outline').forEach(btn=>{btn.addEventListener('click',function(e){const rect=btn.getBoundingClientRect();const c=document.createElement('span');c.style.cssText=`position:absolute;border-radius:50%;background:rgba(255,255,255,0.25);width:10px;height:10px;left:${e.clientX-rect.left-5}px;top:${e.clientY-rect.top-5}px;animation:ripple 0.6s ease forwards;pointer-events:none;`;btn.appendChild(c);setTimeout(()=>c.remove(),700);});});
+
+// 8. COUNTER ANIMATION
+(function(){const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;entry.target.querySelectorAll('.about-stat-text strong').forEach(el=>{const orig=el.textContent;const val=parseFloat(orig);if(isNaN(val))return;const dec=orig.includes('.')?orig.split('.')[1].length:0;const suf=orig.replace(/[\d.]/g,'');const dur=1200;let st=null;function step(ts){if(!st)st=ts;const prog=Math.min((ts-st)/dur,1);const ease=1-Math.pow(1-prog,3);el.textContent=(val*ease).toFixed(dec)+suf;if(prog<1)requestAnimationFrame(step);}requestAnimationFrame(step);});obs.unobserve(entry.target);});},{threshold:0.5});const row=document.querySelector('.about-stat-row');if(row)obs.observe(row);})();
+
+// 9. 3D TILT ON PROJECTS
+document.querySelectorAll('.project-card').forEach(card=>{card.addEventListener('mouseenter',()=>{card.style.transition='transform 0.1s ease,border-color 0.3s,box-shadow 0.35s';});card.addEventListener('mousemove',e=>{const rect=card.getBoundingClientRect();const x=(e.clientX-rect.left)/rect.width-0.5;const y=(e.clientY-rect.top)/rect.height-0.5;card.style.transform=`translateY(-8px) rotateY(${x*6}deg) rotateX(${-y*4}deg)`;});card.addEventListener('mouseleave',()=>{card.style.transition='transform 0.5s ease,border-color 0.3s,box-shadow 0.35s';card.style.transform='';});});
+</script>
+</body>
+</html>
